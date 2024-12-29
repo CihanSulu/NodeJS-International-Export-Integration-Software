@@ -1,0 +1,68 @@
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">OZON Api Bilgilerim</h4>
+                            <p class="sub-header">Satıcısı olduğunuz <b>OZON</b> platformunun API bilgilerini girin.</p>
+
+                            <form action="/api/ozon" method="POST">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="name">Client</label>
+                                                <input type="text" name="client" class="form-control" placeholder="Client ID" value="<%= ozonData.client %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="name">Api Key</label>
+                                                <input type="text" name="apiKey" class="form-control" placeholder="apiKey ID" value="<%= ozonData.apiKey %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="name">Warehouse ID</label>
+                                                <input type="text" name="warehouse" class="form-control" placeholder="Warehouse ID" value="<%= ozonData.warehouse %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12" style="text-align: right;">
+                                        <button type="submit" class="btn btn-success">Ozon API Bilgilerimi Güncelle</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- end row-->
+
+                        </div> <!-- end card-body -->
+                    </div> <!-- end card -->
+                </div><!-- end col -->
+            </div>
+            <!-- end row -->
+
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+

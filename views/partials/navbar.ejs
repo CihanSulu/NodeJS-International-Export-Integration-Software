@@ -1,0 +1,132 @@
+<!-- User box -->
+<div class="user-box text-center">
+
+    <img src="/assets/images/avatar.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
+    <p class="user-name dropdown-toggle h5 mt-2 mb-1 d-block"><%= locals.user.profile %></p>
+    <p class="text-muted left-user-info">Satıcı</p>
+
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <a href="/exit">
+                <i class="mdi mdi-power"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<div id="sidebar-menu">
+
+    <ul id="side-menu">
+
+        <li class="menu-title">Anasayfa</li>
+
+        <li>
+            <a href="/dashboard">
+                <i class="mdi mdi-view-dashboard-outline"></i>
+                <span class="badge bg-success rounded-pill float-end">9+</span>
+                <span> Dashboard </span>
+            </a>
+        </li>
+
+        <li class="menu-title mt-2">Uygulamalar</li>
+
+        <li>
+            <a href="/products">
+                <i class="mdi mdi-store"></i>
+                <span> Ürünlerim </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#email" data-bs-toggle="collapse">
+                <i class="mdi mdi-relation-many-to-many"></i>
+                <span> Trendyol </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="email">
+                <ul class="nav-second-level">
+                    <li>
+                        <a href="/products/new">Tekli Ürün Ekleme</a>
+                    </li>
+                    <li>
+                        <a href="/products/new-many">Toplu Ürün Ekleme</a>
+                    </li>
+                    <li>
+                        <a href="/products/following">Stok Takibi</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a href="#api" data-bs-toggle="collapse">
+                <i class="mdi mdi-connection"></i>
+                <span> API Ayarlarım </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="api">
+                <ul class="nav-second-level">
+                    <li>
+                        <a href="/api">Api Bilgilerim</a>
+                    </li>
+                    <li>
+                        <a href="/api/ozon">Ozon API</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a href="#account" data-bs-toggle="collapse">
+                <i class="mdi mdi-account-heart"></i>
+                <span> Hesabım </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="account">
+                <ul class="nav-second-level">
+                    <li>
+                        <a href="/account">Hesap Bilgilerim</a>
+                    </li>
+                    <li>
+                        <a href="/change-password">Şifre Değiştirme</a>
+                    </li>
+                    <li>
+                        <a href="/agreement">Sözleşmelerim</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <% if(locals.user.admin){ %>
+            <li>
+                <a href="#admin" data-bs-toggle="collapse">
+                    <i class="mdi mdi-security"></i>
+                    <span> Yönetici Ayarları </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="admin">
+                    <ul class="nav-second-level">
+                        <li>
+                            <a href="/admin/users">Üyeler</a>
+                        </li>
+                        <li>
+                            <a href="/admin/users/new">Yeni Üye Oluştur</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        <% } %>
+
+        <li>
+            <a href="/exit">
+                <i class="mdi mdi-exit-to-app"></i>
+                <span> Çıkış Yap</span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="clearfix"></div>

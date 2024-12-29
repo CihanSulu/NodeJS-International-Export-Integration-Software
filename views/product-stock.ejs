@@ -1,0 +1,81 @@
+<!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Stok Takibine Takılan Ürünler</h4>
+                                        <p class="text-muted font-14 mb-3">
+                                            Sistem belirli aralıklarla ürünlerinizin fiyatını ve stok durumunu kontrol ederek sizi uyarır.
+                                        </p>
+    
+                                        <div class="table-responsive">
+                                            <table id="datatable-buttons" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Ürün Resmi</th>
+                                                    <th>Ürün Adı</th>
+                                                    <th>Ürün Grup ID</th>
+                                                    <th>Stok Güncellemesi</th>
+                                                    <th>Güncellenme Tarihi</th>
+                                                    <th>Kaydı Sil</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+    
+                                                    
+                                                    <% groupedData.forEach(function(item) { %>
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                <a class="text-dark" href="/products/<%=item.product_ID%>">
+                                                                    <img src="https://cdn.dsmcdn.com/mnresize/128/192<%= item.images[0] %>" class="shadow" height="50px">
+                                                                </a>
+                                                                <% if(item.images[1] != undefined){ %>
+                                                                    <a class="text-dark" href="/products/<%=item.product_ID%>">
+                                                                        <img src="https://cdn.dsmcdn.com/mnresize/128/192<%= item.images[1] %>" class="shadow" height="50px">
+                                                                    </a>
+                                                                <% } %> 
+                                                            </td>
+                                                            <td><a class="text-dark" href="/products/<%=item.product_ID%>"><%= item.productName %></a></td>
+                                                            <td><%= item.product_ID %></td>
+                                                            <td>
+                                                                <% item.log.forEach(function(log,keyLog){ %>
+                                                                    <button type="button" class="btn btn-success rounded-pill waves-effect waves-light w-100 mb-2 d-block">
+                                                                        <span class="btn-label"><i class="mdi mdi-alert"></i></span><%= log %>
+                                                                    </button>
+                                                                <% }) %>
+                                                            </td>
+                                                            <td><%- formatDateTime(item.created_at) %> </td>
+                                                            <td><a class="btn btn-danger" onclick="return confirm('Stok takip kaydını silmek istediğinizden emin misiniz?')" href="/products/logDelete/<%= item.product_ID %>"><i class="fe-trash"></i> Sil</a></td>
+                                                        </tr>
+                                                    <% }) %>
+    
+    
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        
+                    </div> <!-- container-fluid -->
+
+                </div> <!-- content -->
+
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->

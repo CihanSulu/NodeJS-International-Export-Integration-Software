@@ -1,0 +1,93 @@
+ <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Hesap Bilgilerim</h4>
+                                        <p class="sub-header">Size ait entegrasyon hesabınıza ait bilgileri bu sayfada görüntüleyebilirsiniz.</p>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">İsim</label>
+                                                        <input type="text" name="url" class="form-control" placeholder="İsim" disabled value="<%= user_info.user_name %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Soyisim</label>
+                                                        <input type="text" name="url" class="form-control" placeholder="Soyisim" disabled value="<%= user_info.user_surname %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Email Adresi</label>
+                                                        <input type="text" name="url" class="form-control" placeholder="Email" disabled value="<%= user_info.user_email %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Telefon Numarası</label>
+                                                        <input type="text" name="url" class="form-control" placeholder="Telefon" disabled value="<%= user_info.user_phone %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Toplam Ürün Ekleme Limiti</label>
+                                                        <input type="text" name="url" class="form-control" placeholder="Limit" disabled value="<%= user_limit %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Günlük Ürün Ekleme Limiti</label>
+                                                        <input type="text" name="url" class="form-control" placeholder="Limit" disabled value="<%= user_daily_limit %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Abonelik Kalan Süresi</label>
+                                                        <input type="text" name="url" class="form-control text-success" style="font-weight: bold;" placeholder="Abonelik Süresi" disabled value="<%= remainingDay %> Gün">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end row-->
+
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div><!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->

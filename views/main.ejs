@@ -1,0 +1,255 @@
+<!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+         
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-4 text-center">Toplam Ürün Grubu Sayısı</h4>
+
+                                        <div class="widget-chart-1">
+                                            <div class="widget-detail-1 text-center">
+                                                <h2 class="fw-normal pt-2 mb-1"> <%= listProductsCount %> </h2>
+                                                <p class="text-muted mb-1">Tüm zamanlar</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-4 text-center">Toplam Ürün Sayısı</h4>
+
+                                        <div class="widget-chart-1">
+                                            <div class="widget-detail-1 text-center">
+                                                <h2 class="fw-normal pt-2 mb-1"> <%= totalProductsCount %> </h2>
+                                                <p class="text-muted mb-1">Tüm zamanlar</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-4 text-center">Toplam Stok Takibi Gelen Ürün Sayısı</h4>
+
+                                        <div class="widget-chart-1">
+                                            <div class="widget-detail-1 text-center">
+                                                <h2 class="fw-normal pt-2 mb-1"> <%= stockGroupCount %> </h2>
+                                                <p class="text-muted mb-1">Tüm zamanlar</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-4 text-center">Toplam Stok Takibi Sayısı</h4>
+
+                                        <div class="widget-chart-1">
+                                            <div class="widget-detail-1 text-center">
+                                                <h2 class="fw-normal pt-2 mb-1"> <%= totalStocksCount %> </h2>
+                                                <p class="text-muted mb-1">Tüm zamanlar</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div><!-- end col -->
+
+                        </div>
+                        <!-- end row -->
+
+                        <!--<div class="row">
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-end">
+                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="header-title mt-0">Daily Sales</h4>
+
+                                        <div class="widget-chart text-center">
+                                            <div id="morris-donut-example" dir="ltr" style="height: 245px;" class="morris-chart"></div>
+                                            <ul class="list-inline chart-detail-list mb-0">
+                                                <li class="list-inline-item">
+                                                    <h5 style="color: #ff8acc;"><i class="fa fa-circle me-1"></i>Series A</h5>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <h5 style="color: #5b69bc;"><i class="fa fa-circle me-1"></i>Series B</h5>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-end">
+                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                                            </div>
+                                        </div>
+                                        <h4 class="header-title mt-0">Statistics</h4>
+                                        <div id="morris-bar-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-end">
+                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                                            </div>
+                                        </div>
+                                        <h4 class="header-title mt-0">Total Revenue</h4>
+                                        <div id="morris-line-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- end row -->
+
+
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mb-3">Son Stok Takibi</h4>
+                                        <div class="inbox-widget">
+
+                                            <% if(groupedData.length == 0){ %>
+                                                <p>Stok takibine takılan henüz hiçbir ürün yok.</p>
+                                            <% } %>
+                                            
+                                            <% groupedData.forEach(function(item,key){ %>
+                                            <div class="inbox-item">
+                                                <a href="/products/<%=item.product_ID%>">
+                                                    <div class="inbox-item-img">
+                                                        <a class="text-dark" href="/products/<%=item.product_ID%>">
+                                                            <img src="https://cdn.dsmcdn.com/mnresize/128/192<%= item.images[0] %>" class="shadow" height="50px">
+                                                        </a>
+                                                    </div>
+                                                    <a class="text-dark" href="/products/<%=item.product_ID%>">
+                                                        <h5 class="inbox-item-author mt-0 mb-1"><%= item.productName.substr(0,37) %>...</h5>
+                                                    </a>
+                                                    <p class="inbox-item-text">
+                                                        <%
+                                                        var limit = 3
+                                                        item.log.slice(0, limit).forEach(function(log,keyLog){%>
+                                                            <button type="button" class="btn btn-success rounded-pill waves-effect waves-light w-100 mb-2 d-inline-block" style="width: auto;font-size:12px;">
+                                                                <span class="btn-label"><i class="mdi mdi-alert"></i></span><%= log %>
+                                                            </button>
+                                                        <% }) %>
+                                                    </p>
+                                                    <p class="inbox-item-date"><%- formatDateTime(item.created_at) %></p>
+                                                </a>
+                                            </div>
+                                            <% }) %>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div><!-- end col -->
+
+                            <div class="col-xl-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">Eklenen Son Ürünler</h4>
+                                        <% if(listProducts.length == 0){ %>
+                                            <p>Henüz eklenen hiçbir ürün yok.</p>
+                                        <% }else{ %>
+    
+                                            <div class="table-responsive">
+                                                <table class="table table-hover mb-0">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Ürün Resmi</th>
+                                                        <th>Ürün Adı</th>
+                                                        <th>Ürün Grup ID</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% listProducts.forEach(function(item,key){ %>
+                                                        <tr>
+                                                            <td><%= key+1 %></td>
+                                                            <td>
+                                                                <a href="/products/<%= item.productGroupID %>">
+                                                                    <img src="https://cdn.dsmcdn.com/mnresize/128/192<%= item.productImages[0] %>" class="shadow" height="50px">
+                                                                    <% if(item.productImages[1] != undefined){ %>
+                                                                    <img src="https://cdn.dsmcdn.com/mnresize/128/192<%= item.productImages[1] %>" class="shadow" height="50px">
+                                                                    <% } %> 
+                                                                </a>
+                                                            </td>
+                                                            <td><a href="/products/<%= item.productGroupID %>" class="text-dark"><%= item.productName %></a></td>
+                                                            <td><%= item.productGroupID %></td>
+                                                        </tr>
+                                                        <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        <% } %>
+
+                                    </div> 
+                                </div>
+                               
+                            </div><!-- end col -->
+
+                        </div>
+                        <!-- end row -->       
+                        
+                    </div> <!-- container-fluid -->
+
+                </div> <!-- content -->
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+            <!--Morris Chart-->
+            <!--<script src="/assets/libs/morris.js06/morris.min.js"></script>
+            <script src="/assets/libs/raphael/raphael.min.js"></script>
+            <script src="/assets/js/pages/dashboard.init.js"></script>-->

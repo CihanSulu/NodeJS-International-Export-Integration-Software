@@ -1,0 +1,97 @@
+<!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Üyeler</h4>
+                                        <p class="text-muted font-14 mb-3">
+                                            Sisteme kayıt olan üyeleri bu sayfadan görüntüleyebilirsiniz.
+                                        </p>
+    
+                                        <div class="table-responsive">
+                                            <table id="datatable-buttons" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Kullanıcı Ad & Soyad</th>
+                                                    <th>Kullanıcı Email</th>
+                                                    <th>Kullanıcı Yetkisi</th>
+                                                    <th>Üyelik Sözleşmesi</th>
+                                                    <th>Kullanıcı Üyelik Kalan Süresi</th>
+                                                    <th>Kullanıcıyı Sil</th>
+                                                    <th>Düzenle</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+    
+                                                    <% users.forEach(function(user) { %>
+                                                    <tr>
+                                                        <td><%= user.user_info.user_name %> <%= user.user_info.user_surname %></td>
+                                                        <td><%= user.user_info.user_email %></td>
+                                                        <td>
+                                                            <% if(user.user_admin == true){ %>
+                                                                <span class="text-success" style="font-weight: bold;">Yönetici</span>
+                                                            <% }else{ %>
+                                                                <span>Üye</span>
+                                                            <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <% if(user.user_agreement == true){ %>
+                                                                <span class="text-success" style="font-weight: bold;">Onaylanmış (<%= user.user_agreementDate %>)</span>
+                                                            <% }else{ %>
+                                                                <span>Henüz onaylanmamış</span>
+                                                            <% } %>
+                                                        </td>
+    
+                                                        <%
+                                                        
+                                                        const remainingDate = (getDate) => {
+                                                            // Bugünün tarihini al
+                                                            var bugun = new Date();
+                                                        
+                                                            // Hedef tarihi oluştur (gün, ay, yıl olarak parçalıyoruz)
+                                                            var parcalar = getDate.split(".");
+                                                            var hedefTarih = new Date(parcalar[2], parcalar[1] - 1, parcalar[0]);
+                                                        
+                                                            // Gün farkını hesapla
+                                                            var difference = Math.ceil((hedefTarih - bugun) / (1000 * 60 * 60 * 24));
+                                                        
+                                                            return difference;
+                                                        }
+                                                        
+                                                        %>
+                                                        <td><%= remainingDate(user.user_expirationDate) %> Gün</td>
+                                                        <td><a class="btn btn-primary" href="/admin/users/<%= user._id %>"><i class="fe-eye"></i> İncele/Düzenle</a></td>
+                                                        <td><a class="btn btn-danger" onclick="return confirm('Kullanıcıyı silmek istediğinizden emin misiniz?')" href="/admin/users/delete/<%= user._id %>"><i class="fe-trash"></i> Sil</a></td>
+                                                    </tr>
+                                                    <% }) %>
+    
+    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        
+                    </div> <!-- container-fluid -->
+
+                </div> <!-- content -->
+
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->

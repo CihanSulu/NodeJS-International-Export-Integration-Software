@@ -1,0 +1,461 @@
+            <link href="/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+            
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <h4 class="header-title mb-3">Ürün Detaylarını Görüntüle</h4>
+
+                                        <form action="/products/<%= product[0].productGroupID %>" method="POST" id="productForm">
+                                            <div id="progressbarwizard">
+
+                                                <ul class="nav nav-pills bg-light nav-justified form-wizard-header mb-3">
+                                                    <% product.forEach(function(item,key){  %>
+                                                    <li class="nav-item position-relative btn p-0 border-0">
+                                                        <% stockWarning.forEach(function(stockItem, key){  
+                                                            if (stockItem.itemNumber == item.productID) { %>
+                                                                <span class="warning-box">
+                                                                    <span class="tooltip2"><font class="text-success">Yeni Ürün</font></span>
+                                                                    <i class="mdi mdi-bell-alert"></i>
+                                                                </span>
+                                                        <% }}) %>
+                                                        <a href="#product-<%= key %>" data-bs-toggle="tab" data-toggle="tab" class="nav-link tabsx rounded-0 pt-2 pb-2">
+                                                            <i class="mdi mdi-shopping me-1"></i>
+                                                            <span class="d-none d-sm-inline"><%= item.productName %></span>
+                                                        </a>
+                                                    </li>
+                                                    <% }) %>
+                                                </ul>
+                                            
+                                                <div class="tab-content b-0 mb-0 pt-0">
+                                            
+                                                    <div id="bar" class="progress mb-3" style="height: 7px;">
+                                                        <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="row mb-3 advanced-price">
+                                                                <label class="col-md-3 col-form-label" for="password1">Ürün Kategorisi</label>
+                                                                <div class="col-lg-9 col-md-9 mb-md-0 mb-2 position-relative">
+                                                                    <input type="text" id="kategoriSelect" class="form-control" readonly="" value="<%= ozonCategories.categoryString == '' ? 'Kategori Seçin' : ozonCategories.categoryString %>" style="color:#6c757d !important;">
+                                                                    <div class="categoryPlace shadow">
+                                                                        <div class="row">   
+                                                                            
+                                                                            <input type="hidden" name="categoryID" value="<%= ozonCategories.categoryID%>" id="categoryID">
+                                                                            <input type="hidden" name="typeID" value="<%= ozonCategories.typeID%>" id="typeID">
+                                                                            <input type="hidden" name="categoryString" value="<%= ozonCategories.categoryString%>" id="categoryString">
+                                                                            <div class="cat col-lg-4 p-3 pt-1" id="kategori1">
+                                                                                <h5>Kategori Seçin</h5>
+                                                                                <input type="text" class="form-control" placeholder="Kategori İçinde Arama">
+                                                                                <ul class="mt-2"></ul>
+                                                                            </div>
+                                                                            <div class="cat col-lg-4 p-3 pt-1" id="kategori2">
+                                                                                <h5>Kategori Seçin</h5>
+                                                                                <input type="text" class="form-control" placeholder="Kategori İçinde Arama">
+                                                                                <ul class="mt-2"></ul>
+                                                                            </div>
+                                                                            <div class="cat col-lg-4 p-3 pt-1" id="kategori3">
+                                                                                <h5>Kategori Seçin</h5>
+                                                                                <input type="text" class="form-control" placeholder="Kategori İçinde Arama">
+                                                                                <ul class="mt-2"></ul>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- getAttribute -->
+                                                            <div class="row mb-3 advanced-price attributeDiv" style="<%= ozonCategories.categoryString == '' ? 'display:none' : '' %>">
+                                                                <label class="col-md-3 col-form-label" for="password1">Ürün Özellikleri</label>
+                                                                <div class="col-lg-9 col-md-9 mb-md-0 mb-2 position-relative">
+                                                                    <div class="row attribute">
+
+                                                                        <% OzonAttributes.forEach(function(item) { %>
+                                                                            <% 
+                                                                                item.name = item.name.replace('(tek kartta birleştirmek için)','')
+                                                                                let requiredClass = ""; 
+                                                                            %>
+                                                                            <% if (item.is_required === true) { %>
+                                                                                <% requiredClass = "is_required"; %>
+                                                                            <% } %>
+                                                                            <% if (item.description === "") { %>
+                                                                                <% item.description = item.name; %>
+                                                                            <% } %>
+                                                                            <div class="col-lg-3 col-md-6 mb-2">
+                                                                                <label class="<%= requiredClass %>">
+                                                                                    <div class="tooltipC">
+                                                                                        <i class="mdi mdi-information-outline"></i>
+                                                                                        <span class="tooltiptext"><%= item.description %></span>
+                                                                                    </div>
+                                                                                    <%= item.name %>
+                                                                                </label>
+                                                                                <% if(item.values == undefined){  %>
+                                                                                    <input type="text" name="attributes[]" class="form-control" value="<%= item.value %>" placeholder="<%= item.name %>">
+                                                                                <% }else{ %>
+                                                                                    <% 
+                                                                                    let options = ""
+                                                                                    if(item.is_required == false)
+                                                                                        options = options + "<option value=''>Seçim Yapın</option>"
+                                                                    
+                                                                                    item.values.forEach(value=>{
+                                                                                        let selected = ""
+                                                                                        if(item.value == value.id)
+                                                                                            selected = "selected"
+                                                                                        options = options + "<option value='"+value.id+"' "+selected+">"+value.value+"</option>"
+                                                                                    })
+                                                                                    %>
+                                                                                    <select name="attributes[]" class="form-control select2" data-toggle="select2"><%- options %></select>
+                                                                                <% } %>
+                                                                            
+                                                                            </div>
+                                                                        <% }) %>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 advanced-price">
+                                                                <label class="col-md-3 col-form-label" for="password1">Fiyat Hesaplama</label>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Platform Komisyonu(%)</label>
+                                                                        <input type="number" class="form-control advanced-input advanced-platform" name="advanced-platform" required="true" value="<%= advancedPrice.platform %>">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Kargo Ağırlığı(g)</label>
+                                                                        <input type="number" class="form-control advanced-input advanced-weight" name="advanced-weight" required="true" value="<%= advancedPrice.weight %>">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Üründen Elde Edilen Kar(₺)</label>
+                                                                        <input type="number" class="form-control advanced-input advanced-profit" name="advanced-profit" required="true" value="<%= advancedPrice.profit %>">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2 d-none">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Dolar Kuru($)</label>
+                                                                        <input type="number" class="form-control advanced-input advanced-usd" required="true" value="<%= nowUsd %>">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3 advanced-price packet">
+                                                                <label class="col-md-3 col-form-label">Paket Ölçüleri</label>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Paket Uzunluğu / Derinlik(mm)</label>
+                                                                        <input type="number" class="form-control" name="depth" required="true" value="<%= packetInformation.depth %>">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Paket Genişliği(mm)</label>
+                                                                        <input type="number" class="form-control" name="width" required="true" value="<%= packetInformation.width %>">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-12 mb-lg-0 mb-2">
+                                                                    <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                        <label>Paket Yüksekliği(mm)</label>
+                                                                        <input type="number" class="form-control" name="height" required="true" value="<%= packetInformation.height %>">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <% product.forEach(function(item,key){  %>
+                                                        <div class="tab-pane" id="product-<%= key %>">
+
+                                                            <a href="/products/deleteVariant/<%=item.productGroupID%>/<%=key%>" onclick="return confirm('Ürün varyantını silmek istediğinizden emin misiniz?')" class="btn btn-danger rounded-pill waves-effect waves-light variant-delete" style="position:absolute;right:10px;top:10px;">
+                                                                <span class="btn-label"><i class="mdi mdi-delete"></i></span>Varyantı Sil
+                                                            </a>
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="userName1">Ürün Resimleri</label>
+                                                                        <% item.productImages.forEach(function(image,keyImage){ %>
+                                                                            <% if(keyImage % 9 == 0 && keyImage != 0){ %>
+                                                                                <label class="col-md-3 d-md-block d-none col-form-label"></label>
+                                                                            <% } %>
+                                                                            <div class="col-md-1 col-6 mb-1">
+                                                                                <div class="img-box">
+                                                                                    <% if(item.productImages.length > 1){ %>
+                                                                                        <a href="/products/deleteImage/<%= item._id %>/<%= keyImage %>" onclick="return confirm('Ürün resmini silmek istediğinizden emin misiniz?')" class="btn btn-danger rounded-pill waves-effect waves-light">&times;</a>
+                                                                                    <% } %>
+                                                                                    <img src="https://cdn.dsmcdn.com/mnresize/128/192<%= image %>" alt="" class="img-fluid">
+                                                                                </div>
+                                                                            </div>
+                                                                        <% }) %>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="userName1">Ürün Adı</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" name="productName[]" required="true" value="<%= item.productName %>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="password1">Ürün Linki</label>
+                                                                        <div class="col-md-9">
+                                                                            <div class="input-group">
+                                                                                <a class="btn input-group-text btn-dark waves-effect waves-light" target="_blank" href="https://trendyol.com<%= item.productUrl %>"><i class="mdi mdi-link"></i></a>
+                                                                                <input type="text" class="form-control"  disabled="true" name="productPricee"  value="https://trendyol.com<%= item.productUrl %>">
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <% if(item.productColor != undefined){ %>
+                                                                        <!--<div class="row mb-3 d-none">
+                                                                            <label class="col-md-3 col-form-label" for="password1">Ürün Rengi</label>
+                                                                            <div class="col-md-9">
+                                                                                <button type="button" class="btn btn-dark waves-effect waves-light color-box">
+                                                                                    <input type="text" class="form-control" name="productColor[]" required="true" value="<%= item.productColor.charAt(0).toUpperCase() + item.productColor.slice(1) %>">
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>-->
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-3 col-form-label" for="password1">Ürün Rengi</label>
+                                                                            <div class="col-lg-2 col-md-6">
+                                                                                <button type="button" class="btn btn-dark waves-effect waves-light color-box w-100">
+                                                                                    <label><%= item.productColor.charAt(0).toUpperCase() + item.productColor.slice(1) %></label>
+                                                                                    <select name="productColor[]" class="productColor form-control" style="border-radius: 0px;" required="true"></select>
+                                                                                    <input type="hidden" name="productOzonColorCode" value="<%= item.productOzonColor %>">
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    <% } %>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="password1">Stok Durumu</label>
+                                                                        <% 
+                                                                            let p = 1
+                                                                            item.productAllVariants.forEach(function(i){ 
+                                                                            if(p%5 == 0){%>
+                                                                                <label class="col-md-3 col-form-label d-lg-block d-none"></label>
+                                                                            <% } p = p + 1 %>
+                                                                            <div class="col-lg-2 col-md-6 mb-2">
+                                                                                <button type="button" class="w-100 btn btn-soft-<% if(i.inStock == true){ %>success<% }else{%>danger<% } %> waves-effect waves-light variant-box">
+                                                                                    <% stockWarning.forEach(function(stock){ %>
+                                                                                        <% if(i.itemNumber == stock.itemNumber && stock.itemType == "stock"){ %>
+                                                                                            <span class="warning-box">
+                                                                                                <% function changeStock(item){if(item == "true"){return "<font class='text-success'>Stokta</font>"}else{return "<font class='text-danger'>Stok Dışı</font>"}} %>
+                                                                                                <span class="tooltip2"><%- changeStock(stock.itemOldValue) %> <i class="mdi mdi-arrow-right"></i> <%- changeStock(i.inStock.toString()) %> </span>
+                                                                                                <i class="mdi mdi-bell-alert"></i>
+                                                                                            </span>
+                                                                                        <% } %>
+                                                                                        <% if(i.itemNumber == stock.itemNumber && stock.itemType == "new"){ %>
+                                                                                            <span class="warning-box new">
+                                                                                                <span class="tooltip2"><font class="text-success">Yeni Varyant</font></span>
+                                                                                                <i class="mdi mdi-bell-alert"></i>
+                                                                                            </span>
+                                                                                        <% } %>
+                                                                                    <% }) %>
+                                                                                    
+                                                                                    <% if(i.value == "" && i.inStock == true){ %>
+                                                                                        <input type="text" class="form-control" style="background-color:transparent;" disabled="true" value="Stokta">
+                                                                                    <% } %>
+                                                                                    <% if(i.value == "" && i.inStock == false){ %>
+                                                                                        <input type="text" class="form-control" style="background-color:transparent;" disabled="true" value="Tükendi!">
+                                                                                    <% } %>
+                                                                                    
+                                                                                    <% if(i.value != ""){ %>
+                                                                                        <style>
+                                                                                            .variant-box{display:block;z-index:9999999 !important;}
+                                                                                        </style>
+                                                                                        <button type="button" class="btn w-100 btn-<% if(i.inStock == true){ %>success<% }else{%>danger<% } %> waves-effect waves-light color-box">
+                                                                                            <label><%= i.value.replace('.','') %></label>
+                                                                                            <select name="productStockValue-<%=key %>[]" class="form-control variantSelect" style="border-radius: 0px;">
+                                                                                                <option value="">Rusya Boyutunu Seçin</option>
+                                                                                                <% if(OzonAttributeVariants.length != 0){
+                                                                                                    OzonAttributeVariants.forEach(att=>{
+                                                                                                        let selectVariant = ""
+                                                                                                        if(att.id == i.ozonValue)
+                                                                                                            selectVariant = "selected"
+                                                                                                %>
+                                                                                                <option value="<%= att.id %>" <%= selectVariant %>><%= att.value %></option>
+                                                                                                <% }) }%>
+                                                                                            </select>
+                                                                                        </button>
+                                                                                        <!--<input type="text" class="form-control" name="productStockValue-<%=key %>[]" required="true" value="<%= i.value.replace('.','') %>">-->
+                                                                                    <% } %>
+                                                                                </button>
+                                                                            </div>
+                                                                        <% }) %>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="password1">Ürün Fiyatları</label>
+                                                                        <% 
+                                                                            let t = 1 
+                                                                            item.productAllVariants.forEach(function(i,priceKey){ 
+                                                                            if(t%5 == 0){%>
+                                                                                <label class="col-md-3 col-form-label d-lg-block d-none"></label>
+                                                                            <% } t = t + 1 %>
+                                                                            <div class="col-lg-2 col-md-6 mb-2">
+                                                                                <button type="button" class="w-100 btn btn-soft-info waves-effect waves-light price-box">
+                                                                                    <% stockWarning.forEach(function(stock){ %>
+                                                                                        <% if(i.itemNumber == stock.itemNumber && stock.itemType == "price"){ %>
+                                                                                            <span class="warning-box">
+                                                                                                <span class="tooltip2"><font class="text-danger"><%= stock.itemOldValue %></font> <i class="mdi mdi-arrow-right"></i> <font class="text-success"><%= i.price %></font> </span>
+                                                                                                <i class="mdi mdi-bell-alert"></i>
+                                                                                            </span>
+                                                                                        <% } %>
+                                                                                    <% }) %>
+                                                                                    <% if(i.newPrice != undefined && i.price != i.newPrice){ %>
+                                                                                        <span class="d-block w-100 text-white" style="background-color: #35b8e0 ;"><%= i.price %>₺</span>
+                                                                                        <input type="hidden" class="saveControl" value="1">
+                                                                                    <% }else{ %>
+                                                                                        <input type="hidden" class="saveControl" value="0">
+                                                                                    <% } %>
+                                                                                    <input type="number" class="form-control div-priceBox" real-price="<%= i.price %>" name="productStockPrice-<%=key %>[]" required="true" value="<% if(i.newPrice == undefined){ %><%= i.price %><% }else{ %><%= i.newPrice %><% } %>">
+                                                                                </button>
+                                                                            </div>
+                                                                        <% }) %>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="password1">Ürün Açıklaması</label>
+                                                                        <div class="col-md-9">
+                                                                            <div class="snow-editor-container">
+                                                                                <input type="hidden" name="productDescriptions[]">
+                                                                                <div id="snow-editor-<%= key %>" class="editorforhidden" style="height: 300px;">
+                                                                                    <%- item.productDescription.replace('< p>','') %>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="password1">Alternatif Satıcıları(<%= item.productOtherMerchants.length %>)</label>
+                                                                        <div class="col-md-9">
+                                                                            <div class="accordion custom-accordion" id="custom-accordion-one">
+                                                                                <div class="card mb-0">
+                                                                                    <div class="card-header" id="headingNine">
+                                                                                        <h5 class="m-0 position-relative">
+                                                                                            <a class="custom-accordion-title text-reset d-block" data-bs-toggle="collapse" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                                                                                                Alternatif (<%= item.productOtherMerchants.length %>) Satıcıyı Görüntüle <i class="mdi mdi-chevron-down accordion-arrow"></i>
+                                                                                            </a>
+                                                                                        </h5>
+                                                                                    </div>
+                                            
+                                                                                    <div id="collapseNine" class="collapse" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one" style="">
+                                                                                        <div class="card-body">
+                                                                                            <ul class="p-0 otherMerchant">
+                                                                                                <% item.productOtherMerchants.sort((a, b) => b.merchant.name.length - a.merchant.name.length).forEach(function(merchant){ %>
+                                                                                                    <% if(merchant.hasStock == true){ %>
+                                                                                                        <li><a target="_blank" href="https://trendyol.com<%= merchant.url %>" class="btn btn-dark waves-effect waves-light"><i class="mdi mdi-store me-1"></i> <%= merchant.merchant.name %></a></li>
+                                                                                                    <% } %>
+                                                                                                <% }) %>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </div>
+                                                    <% }) %>
+
+                                                    <div class="mb-4 mt-2 d-md-flex d-block justify-content-end single-buttons">
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light me-3" id="updateBtn">
+                                                            <span class="btn-label"><i class="mdi mdi-content-save"></i></span>Ürünü Güncelle
+                                                        </button>
+                                                        <button type="button" class="btn btn-success waves-effect waves-light" id="uploadOzon">
+                                                            <span class="btn-label"><i class="mdi mdi-cloud-upload-outline"></i></span>Ürünü Ozon'a Yükle
+                                                        </button>
+                                                    </div>
+
+                                                    <% if(product.length>1){ %>
+                                                        <ul class="list-inline mb-0 wizard">
+                                                            <li class="previous list-inline-item">
+                                                                <a href="javascript: void(0);" class="btn btn-secondary">Önceki</a>
+                                                            </li>
+                                                            <li class="next list-inline-item float-end">
+                                                                <a href="javascript: void(0);" class="btn btn-secondary">Sonraki</a>
+                                                            </li>
+                                                        </ul>
+                                                    <% } %>
+
+                                                </div> <!-- tab-content -->
+                                            </div> <!-- end #progressbarwizard-->
+                                        </form>
+
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card-->
+                            </div> <!-- end col -->
+
+                        </div> 
+                        <!-- end row -->
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+            <!-- Plugins js -->
+            <script src="/assets/libs/quill/quill.min.js"></script>
+            <!-- Init js-->
+            <script src="/assets/js/pages/form-quilljs.init.js"></script>
+            
+            <% product.forEach(function(item,key){  %>
+            <script>
+                var quill1 = new Quill('#snow-editor-<%= key %>', {
+                    theme: 'snow'
+                });
+            </script>
+            <% }) %>
+
+            <script>
+                // .tabsx class'ına sahip tüm elementleri seçin
+                var tabsxElements = document.querySelectorAll('.tabsx');
+
+                // Her bir .tabsx elementini döngü ile gezin
+                tabsxElements.forEach(function(tabsxElement) {
+                    // .tabsx içindeki href özniteliğini alın
+                    var hrefValue = tabsxElement.getAttribute('href');
+                    
+                    // href değerinden tab-pane'nin id'sini alın
+                    var tabPaneID = hrefValue.substring(hrefValue.indexOf("#") + 1); // # işaretinden sonraki kısmı alın
+
+                    // tab-pane'nin id'si ile eşleşen elementi bulun
+                    var tabPaneElement = document.getElementById(tabPaneID);
+
+                    // Eğer tabPaneElement varsa ve içinde warning-box varsa
+                    if (tabPaneElement && tabPaneElement.querySelector('.warning-box')) {
+                        // tabsx içine "span bulundu" yazdırın
+                        tabsxElement.innerHTML += '<span class="warning-box"><span class="tooltip2"><font class="text-success">Güncelleme!</font></span><i class="mdi mdi-bell-alert" style="color:#ff5b5b"></i></span>';
+                    }
+                });
+            </script>
+
+            <!--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>-->
+            <script src="/assets/js/ozon/category.js"></script>
+            <script src="/assets/js/ozon/product.js"></script>
+            <script src="/assets/js/ozon/ozonColors.js"></script>
+            <script src="/assets/libs/select2/js/select2.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('.select2').select2();
+                });
+            </script>

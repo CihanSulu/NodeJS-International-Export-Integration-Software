@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Entegio - Türkiye'nin Lider E-Ticaret Entegrasyonu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
+        <!-- App css -->
+        <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+        <link href="/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+        <style>
+            .dataTables_paginate.paging_simple_numbers{
+                padding-right: 8px;
+            }
+            .menuitem-active{height:auto !important;}
+        </style>
+        <!-- icons -->
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+
+        <!-- Vendor -->
+        <script src="/assets/libs/jquery/jquery.min.js"></script>
+        <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="/assets/libs/node-waves/waves.min.js"></script>
+        <script src="/assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="/assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+        <script src="/assets/libs/feather-icons/feather.min.js"></script>
+    </head>
+
+    <!-- body start -->
+    <body class="loading" data-layout-color="light"  data-layout-mode="default" data-layout-size="fluid" data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='true'>
+
+        <div class="loading-page" style="display: none;">
+            <div class="counter">
+                <p>yükleniyor</p>
+                <h1>0%</h1>
+                <hr/>
+            </div>
+        </div>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Topbar Start -->
+            <%- include("../partials/topbar") %>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left-side-menu">
+
+                <div style="height: auto !important;">
+                    <!--- Sidemenu -->
+                    <%- include('../partials/navbar') %>
+                    <!-- End Sidebar -->
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+    
+            <%- body %>
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+
+        <!-- knob plugin -->
+        <script src="/assets/libs/jquery-knob/jquery.knob.min.js"></script>
+
+        
+        <!-- third party js -->
+        <script src="/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+        <script src="/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+        <script src="/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+        <script src="/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+        <script src="/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <!-- third party js ends -->
+
+        <!-- Datatables init -->
+        <script src="/assets/js/pages/datatables.init.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Plugins js-->
+        <script src="/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+        <!-- Init js-->
+        <script src="/assets/js/pages/form-wizard.init.js"></script>
+        <script src="/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+        <script src="/assets/libs/select2/js/select2.min.js"></script>
+        <script src="/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+        <!-- <script src="/assets/js/pages/form-advanced.init.js"></script> -->
+        <script src="/assets/js/findNearestWeightAndPrice.js"></script>
+        <script src="/assets/js/dashboard.js"></script>
+
+        <% if (message.msg) { %>
+            <script>
+                iziToast.<%= message.msg[0].type %>({
+                    title: 'Uyarı!',
+                    message: '<%= message.msg[0].message %>',
+                    position:'topLeft'
+                });
+            </script>
+        <% } %>        
+
+        <!-- App js-->
+        <script src="/assets/js/app.min.js"></script>
+
+
+    </body>
+</html>

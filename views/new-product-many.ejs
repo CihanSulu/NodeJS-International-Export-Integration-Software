@@ -1,0 +1,53 @@
+ <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Trendyol Toplu Ürün Ekleme</h4>
+                                        <p class="sub-header">Trendyol mağazalarından kategori veya mağazalardan toplu ürün çekmek ve stok takibi yapmak için ürün linkini aşağıdaki kutucuğa girin.</p>
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <form action="/products/new-many" method="post">
+                                                    <div class="mb-3">
+                                                        <div class="mb-1">
+                                                            <img src="/assets/images/trendyol.png" height="20"> <i class="mdi mdi-size-xl fa-2x"></i>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <input type="text" name="url" class="form-control" placeholder="Trendyol Kategori Veya Mağaza Linki">
+                                                            <button class="btn input-group-text btn-dark waves-effect waves-light load" type="submit">Ürünü Çek</button>
+                                                        </div>
+                                                        <div class="note mt-2">
+                                                            <small><b>NOT!</b> Güvenlik sebebiyle tek seferde toplu <%= locals.user.trendyolManyLimit %> ürün eklenebilmektedir. <%= locals.user.trendyolManyLimit %> den fazla ürünleriniz için ilgili kategori linkini tekrar giriniz.</small>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div> <!-- end col -->
+                                        </div>
+                                        <!-- end row-->
+
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div><!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
